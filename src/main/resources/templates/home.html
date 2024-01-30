@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1> Welcome to the start-page. </h1>
+    <p> Simon Enterprise project, 2024. </p>
+    <ul>
+        <li>
+            <a th:href="@{/adminpage}">Register so that you can sign in and see more features.</a>
+        </li>
+         <li>
+            <a th:href="@{/register}">Don't have a account? Register mybe? :)</a>
+        </li>
+        <li>
+            <a th:href="@{/api/helloAdmin}">helloAdmin - Need to be ADMIN</a>
+        </li>
+        <li>
+            <a th:href="@{/api/sayGet}">Say Get - Need permission GET</a>
+        </li>
+    </ul>
+
+</body>
+</html>
