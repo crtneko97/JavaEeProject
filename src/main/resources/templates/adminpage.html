@@ -39,6 +39,7 @@
                 <th>Username</th>
                 <th>password</th>
                 <th>Role</th>
+                <th>Update - Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +48,10 @@
                 <td th:text="${user.username}"></td>
                 <td th:text="${user.password}"></td>
 				<td th:text="${user.role}"></td>
-				<td> <a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a></td>
+				<td> 
+				<a th:href="@{/showUpdateUser/{id}(id=${user.id})}"}>Update</a>
+				<a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a>
+				</td>
             </tr>
         </tbody>
     </table>
