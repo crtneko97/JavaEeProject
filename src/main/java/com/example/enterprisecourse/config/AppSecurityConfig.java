@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.example.enterprisecourse.services.UserServiceImpl;
+import com.example.enterprisecourse.services.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -30,10 +30,10 @@ public class AppSecurityConfig {
     //      ROLE_GUEST  == GET
 
     private final AppPasswordConfig appPasswordConfig;
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @Autowired
-    public AppSecurityConfig(AppPasswordConfig appPasswordConfig, UserServiceImpl userService) {
+    public AppSecurityConfig(AppPasswordConfig appPasswordConfig, UserService userService) {
         this.appPasswordConfig = appPasswordConfig;
         this.userService = userService;
     }

@@ -1,8 +1,6 @@
 package com.example.enterprisecourse.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.enterprisecourse.config.AppPasswordConfig;
 import com.example.enterprisecourse.models.Roles;
 import com.example.enterprisecourse.models.UserEntity;
+import com.example.enterprisecourse.models.UserNotFoundException;
 import com.example.enterprisecourse.models.UserRepository;
 import com.example.enterprisecourse.services.UserService;
 
@@ -40,25 +40,44 @@ public class UserController {
     
 
     //
-    @GetMapping("/showUpdateUser/{id}")
-    public String updateUser(@PathVariable(value = "id") long id, Model model) {
-    	
-    	UserEntity user = userService.getUserById(id);
-    	
-    	model.addAttribute("user", user);
-    
-    	
-    	return "updateUser";
+    @GetMapping("/users/edit/{id}")
+    public String showUpdateForm(@PathVariable(value = "id") long id, Model model, RedirectAttributes ra) {
+        try {
+            UserEntity user = userService.getUserById(id);
+            model.addAttribute("user", user);
+            model.addAttribute("roles", Roles.values());
+            model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
+            return "updateUser";
+        } catch (UserNotFoundException e) {
+            ra.addFlashAttribute("message", e.getMessage());
+            return "redirect:/adminpage";
+        }
     }
-    
-    // Lägg till auth senare. yahya <3
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") UserEntity user ){
-    	
-    	this.userService.saveUser(user);
-    	
-    	return "redirect:/adminpage";
+
+    @PostMapping("/users/update")
+    public String updateUser(@ModelAttribute("user") UserEntity updatedUser) {
+        try {
+            // Ensure the 'id' is set properly
+            UserEntity existingUser = userRepository.findById(1)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + updatedUser.getId()));
+            // Update only the required fields
+            existingUser.setUsername(updatedUser.getUsername());
+            existingUser.setRole(updatedUser.getRole());
+            userRepository.save(existingUser);
+            return "redirect:/adminpage";
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+            // You might want to return a different view or handle the error differently
+            return "error";
+        }
     }
+
+
+
+
+
+    
     
     @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable(value = "id") long id) {

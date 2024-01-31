@@ -17,6 +17,8 @@ public class AppWebConfig implements WebMvcConfigurer {
         registry.addViewController("/logout").setViewName("logout");
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/adminpage").setViewName("adminpage");
+
+
     }
 
     // Allows CSS, JS, HTML, IMAGES to be displayed

@@ -1,5 +1,6 @@
 package com.example.enterprisecourse.models;
 import java.util.Collection;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "users")
 public class UserEntity implements UserDetails{
-	   @Id
+	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private long id;
 
@@ -51,7 +52,6 @@ public class UserEntity implements UserDetails{
 	    
 	    
 	    // yahya <33
-	    
 	    public long getId() {
 	    	return id;
 	    }
@@ -65,6 +65,7 @@ public class UserEntity implements UserDetails{
 	        // return role.getAuthorities();
 	        return role.getAuthorities();
 	    }
+
 
 	    @Override
 	    public String getPassword() {
