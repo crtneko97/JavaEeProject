@@ -1,6 +1,7 @@
 package com.example.enterprisecourse.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,16 +56,17 @@ public class UserController {
     }
 
     @PostMapping("/users/update")
-    public String updateUser(@ModelAttribute("user") UserEntity updatedUser) {
-        try {
+    public String updateUser(@ModelAttribute("user") UserEntity updatedUser, Authentication authentication) {
+        String username = authentication.getName();
+    	
+    	try {
             // Ensure the 'id' is set properly
-            UserEntity existingUser = userRepository.findById(1)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + updatedUser.getId()));
+            UserEntity existingUser = userRepository.findByUsername(username);
             // Update only the required fields
             existingUser.setUsername(updatedUser.getUsername());
             existingUser.setRole(updatedUser.getRole());
             userRepository.save(existingUser);
-            return "redirect:/adminpage";
+            return "redirect:/login";
         } catch (Exception e) {
             // Log the exception
             e.printStackTrace();
