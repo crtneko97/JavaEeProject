@@ -1,17 +1,18 @@
 package com.example.enterprisecourse.models;
 import java.util.Collection;
-import java.util.Objects;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
@@ -37,6 +38,11 @@ public class UserEntity implements UserDetails{
 	    private boolean accountNonLocked;
 	    private boolean accountEnabled;
 	    private boolean credentialsNonExpired;
+	    
+	    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
+	    private List<PostEntity> posts;
+	    
+	    
 
 	    public UserEntity() {}
 	    public UserEntity(String username, String password, Roles roles,
@@ -49,8 +55,6 @@ public class UserEntity implements UserDetails{
 	        this.accountEnabled = accountEnabled;
 	        this.credentialsNonExpired = credentialsNonExpired;
 	    }
-	    
-	    
 	    // yahya <33
 	    public long getId() {
 	    	return id;

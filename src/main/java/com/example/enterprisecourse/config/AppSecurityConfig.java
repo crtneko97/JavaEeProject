@@ -1,6 +1,6 @@
 package com.example.enterprisecourse.config;
 
-import static com.example.enterprisecourse.models.Roles.ADMIN;
+import static com.example.enterprisecourse.models.Roles.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.example.enterprisecourse.services.UserService;
@@ -43,10 +44,11 @@ public class AppSecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)                  // Can cause 403 Forbidden
                 .authorizeHttpRequests(authorize -> authorize
-                	    .requestMatchers("/", "/hash", "/register", "/api/user").permitAll()
-                	    .requestMatchers("/adminpage").hasRole(ADMIN.name())
-                	    .anyRequest().permitAll()
-                	)
+                        .requestMatchers("/", "/hash", "/register", "/api/user").permitAll()
+                        .requestMatchers("/adminpage").hasRole(ADMIN.name())
+                        .requestMatchers("/createPost").hasAuthority("GET") // Require authentication for creating posts
+                        .anyRequest().permitAll()
+                )
 
 
                 .formLogin( formLogin -> formLogin
@@ -66,7 +68,7 @@ public class AppSecurityConfig {
                         .clearAuthentication(true)
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID", "remember-me")
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/")
                 )
 
                 .authenticationProvider(daoAuthenticationProvider())    // Tell Spring to use our implementation (Password & Service)
