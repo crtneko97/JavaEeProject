@@ -13,6 +13,8 @@ public class AppWebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("home");
+        registry.addViewController("/forum").setViewName("forum");
+        registry.addViewController("/about").setViewName("about");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/logout").setViewName("logout");
         registry.addViewController("/register").setViewName("register");
@@ -25,7 +27,8 @@ public class AppWebConfig implements WebMvcConfigurer {
     // TODO - Is the 'resources' really necessary?
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**", "/static/**")
-                .addResourceLocations("/resources/", "classpath:/static/");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
     }
+
 }

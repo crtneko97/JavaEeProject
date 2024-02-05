@@ -4,24 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
-</head>
-<body>
-    <h1> Welcome to the start-page. </h1>
-    <p> Simon Enterprise project, 2024. </p>
-    <ul>
-        <li>
-            <a th:href="@{/adminpage}">Register so that you can sign in and see more features.</a>
-        </li>
-         <li>
-            <a th:href="@{/register}">Don't have a account? Register mybe? :)</a>
-        </li>
-        <li>
-            <a th:href="@{/api/helloAdmin}">helloAdmin - Need to be ADMIN</a>
-        </li>
-        <li>
-            <a th:href="@{/api/sayGet}">Say Get - Need permission GET</a>
-        </li>
-    </ul>
 
+    <!-- Add style for centering and styling -->
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: lightgray; /* Set the background color of the body */
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff; /* Keep a white background inside the container */
+            border-radius: 8px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black; /* Set font color to black */
+            font-weight: bold;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        img {
+            max-width: 50%; /* Make the image responsive, adjusting its size to fit the container */
+            height: auto; /* Maintain the aspect ratio */
+            margin-top: 10px; /* Add some space between the image and the text */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Wrap content in a container div -->
+    <div class="container">
+        <div class="navbar">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/}">About</a>
+			<a th:href="@{/}">Forum</a>
+            <a th:href="@{/register}">Register</a>
+            <a th:href="@{/login}">Login</a>
+            <!-- Add more navigation links as needed -->
+        </div>
+        <h1>Welcome to the start-page.</h1>
+        <p>Simon Enterprise project, 2024.</p>
+        <img src="../static/projectlol.jpeg" alt="This image could not be loaded">
+        <ul>
+			<li>
+                <a th:href="@{/adminpage}">Admin page</a>
+            </li>
+            <li>
+                <a th:href="@{/api/helloAdmin}">helloAdmin - Need to be ADMIN</a>
+            </li>
+            <li>
+                <a th:href="@{/api/sayGet}">Say Get - Need permission GET</a>
+            </li>
+        </ul>
+        
+		<p>
+		    This is a sample paragraph with line breaks.<br>
+		    The content continues on a new line.<br>
+		    You can use the &lt;br&gt; tag to create breaks within a paragraph.
+		</p>
+		<p>
+		    This is a sample paragraph with line breaks.<br>
+		    The content continues on a new line.<br>
+		    You can use the &lt;br&gt; tag to create breaks within a paragraph.
+		</p>
+		<p>
+		    This is a sample paragraph with line breaks.<br>
+		    The content continues on a new line.<br>
+		    You can use the &lt;br&gt; tag to create breaks within a paragraph.
+		</p>
+    </div>
 </body>
+
 </html>

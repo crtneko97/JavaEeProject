@@ -1,54 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+
+    <!-- Add your additional styles here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: #dc3545;
+            margin-top: 8px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        li {
+            list-style-type: none;
+            margin-bottom: 4px;
+        }
+    </style>
 </head>
+
 <body>
+
     <div>
         <h1>Register User Page</h1>
         <form method="post" th:action="@{/register}" th:object="${userEntity}">
-            <label for="username">username</label>
-            <input type="text" th:field="*{username}" placeholder="username..." id="username" autofocus>
+            <label for="username">Username:</label>
+            <input type="text" th:field="*{username}" placeholder="Enter your username..." id="username" autofocus>
 
-            <label for="password">password</label>
-            <input type="password" th:field="*{password}" placeholder="password..." id="password">
+            <label for="password">Password:</label>
+            <input type="password" th:field="*{password}" placeholder="Enter your password..." id="password">
 
             <label for="roles">Select Role:</label>
             <select id="roles" name="roles" th:field="*{role}">
                 <option th:each="role : ${roles}" th:value="${role.name()}" th:text="${role.name()}"></option>
             </select>
 
-            <button type="submit"> Register </button>
+            <button type="submit">Register</button>
 
-            <!-- IMPORTANT : Must be inside FORM -->
-            <p 	th:if="${#fields.hasErrors('username')}"
-                  th:errorclass="error"
-                  th:errors="*{username}">
-            </p>
+            <!-- Show errors for username -->
+            <p th:if="${#fields.hasErrors('username')}" class="error" th:errors="*{username}"></p>
 
-            <!-- Show MULTIPLE errors at once -->
+            <!-- Show multiple errors for password -->
             <ul>
-                <li th:each="error : ${#fields.errors('password')}" th:text="${error}" class="error">
+                <li th:each="error : ${#fields.errors('password')}" class="error" th:text="${error}"></li>
             </ul>
 
-            <!-- Show ANY error in the form -->
+            <!-- Show any error in the form -->
             <div th:if="${#fields.hasAnyErrors()}">
                 <ul>
-                    <li th:each="error : ${#fields.allErrors()}" th:text="${error}">
-
-                    </li>
+                    <li th:each="error : ${#fields.allErrors()}" class="error" th:text="${error}"></li>
                 </ul>
             </div>
-
         </form>
 
-
-
         <p>Debugging, don't mind this input! :)</p>
-        <input name="username" >
-
+        <input name="username">
     </div>
 
 </body>
+
 </html>
