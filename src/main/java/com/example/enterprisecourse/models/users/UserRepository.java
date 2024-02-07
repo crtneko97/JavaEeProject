@@ -1,4 +1,4 @@
-package com.example.enterprisecourse.models;
+package com.example.enterprisecourse.models.users;
 
 import java.util.Optional;
 
@@ -11,10 +11,7 @@ import jakarta.persistence.Id;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    // UserEntity could be an OPTIONAL as well if you want it to be
     UserEntity findByUsername(String username);
+
     Optional<UserEntity> findById(long id);
-
-    
-
 }

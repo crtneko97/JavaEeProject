@@ -1,9 +1,12 @@
-package com.example.enterprisecourse.models;
+package com.example.enterprisecourse.models.users;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.example.enterprisecourse.models.posts.PostEntity;
+import com.example.enterprisecourse.models.roles.Roles;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -13,48 +16,49 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 
 @Entity
 @Table(name = "users")
-public class UserEntity implements UserDetails{
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private long id;
+public class UserEntity implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	    // @Column(unique = true) Make values UNIQUE
-	    @Size(min = 1, max = 64)
-	    private String username;
+    @Size(min = 1, max = 64)
+    private String username;
 
-	    @Size(min = 4, max = 64, message = "Password must contain at least 4-64 chars")
-	    private String password;
+    @Size(min = 4, max = 64, message = "Password must contain at least 4-64 chars")
+    private String password;
 
-	    @Enumerated(EnumType.STRING)
-	    private Roles role;
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
-	    private boolean accountNonExpired;
-	    private boolean accountNonLocked;
-	    private boolean accountEnabled;
-	    private boolean credentialsNonExpired;
-	    
-	    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
-	    private List<PostEntity> posts;
-	    
-	    
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean accountEnabled;
+    private boolean credentialsNonExpired;
 
-	    public UserEntity() {}
-	    public UserEntity(String username, String password, Roles roles,
-	                      boolean accountNonExpired, boolean accountNonLocked, boolean accountEnabled, boolean credentialsNonExpired) {
-	    	this.username = username;
-	        this.password = password;
-	        this.role = roles;
-	        this.accountNonExpired = accountNonExpired;
-	        this.accountNonLocked = accountNonLocked;
-	        this.accountEnabled = accountEnabled;
-	        this.credentialsNonExpired = credentialsNonExpired;
-	    }
+
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
+    private List<PostEntity> posts;
+
+    public UserEntity() {}
+
+    public UserEntity(String username, String password, Roles roles,
+                      boolean accountNonExpired, boolean accountNonLocked, boolean accountEnabled, boolean credentialsNonExpired) {
+        this.username = username;
+        this.password = password;
+        this.role = roles;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.accountEnabled = accountEnabled;
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
 	    // yahya <33
 	    public long getId() {
 	    	return id;

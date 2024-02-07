@@ -1,6 +1,8 @@
-package com.example.enterprisecourse.models;
+package com.example.enterprisecourse.models.posts;
 
 import java.time.LocalDateTime;
+
+import com.example.enterprisecourse.models.users.UserEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,20 +19,23 @@ public class PostEntity {
 
     private String title;
     private String link;
+    private String body; // New attribute for the post body
     private LocalDateTime createdAt;
 
     // Change createdBy to represent the owning side of the relationship
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity createdBy;
+
     // Constructors
     public PostEntity() {
         // Empty constructor
     }
 
-    public PostEntity(String title, String link, LocalDateTime createdAt, UserEntity createdBy) {
+    public PostEntity(String title, String link, String body, LocalDateTime createdAt, UserEntity createdBy) {
         this.title = title;
         this.link = link;
+        this.body = body;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
     }
@@ -60,6 +65,14 @@ public class PostEntity {
         this.link = link;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -75,5 +88,4 @@ public class PostEntity {
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
     }
-
 }

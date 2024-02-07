@@ -1,8 +1,9 @@
-package com.example.enterprisecourse.controllers;
+package com.example.enterprisecourse.controllers.post;
 
-import com.example.enterprisecourse.models.PostEntity;
-import com.example.enterprisecourse.models.PostRepository;
-import com.example.enterprisecourse.models.UserEntity;
+import com.example.enterprisecourse.models.posts.PostEntity;
+import com.example.enterprisecourse.models.posts.PostRepository;
+import com.example.enterprisecourse.models.users.UserEntity;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

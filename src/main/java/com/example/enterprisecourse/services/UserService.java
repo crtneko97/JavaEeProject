@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.enterprisecourse.models.UserEntity;
-import com.example.enterprisecourse.models.UserNotFoundException;
-import com.example.enterprisecourse.models.UserRepository;
+import com.example.enterprisecourse.models.users.UserEntity;
+import com.example.enterprisecourse.models.users.UserNotFoundException;
+import com.example.enterprisecourse.models.users.UserRepository;
 
 import jakarta.persistence.Id;
 

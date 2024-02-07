@@ -1,4 +1,4 @@
-package com.example.enterprisecourse.controllers;
+package com.example.enterprisecourse.controllers.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enterprisecourse.config.AppPasswordConfig;
-import com.example.enterprisecourse.models.Roles;
-import com.example.enterprisecourse.models.UserEntity;
-import com.example.enterprisecourse.models.UserRepository;
+import com.example.enterprisecourse.models.roles.Roles;
+import com.example.enterprisecourse.models.users.UserEntity;
+import com.example.enterprisecourse.models.users.UserRepository;
 
 @RestController
 @RequestMapping("/api")
@@ -106,6 +106,8 @@ public class UserRestController {
 
         return new ResponseEntity<>("You can only enter with GET Authority!", HttpStatus.ACCEPTED);
     }
+
+
 
 
 

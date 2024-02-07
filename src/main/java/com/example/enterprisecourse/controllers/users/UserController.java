@@ -1,7 +1,10 @@
-package com.example.enterprisecourse.controllers;
+package com.example.enterprisecourse.controllers.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,10 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.enterprisecourse.config.AppPasswordConfig;
-import com.example.enterprisecourse.models.Roles;
-import com.example.enterprisecourse.models.UserEntity;
-import com.example.enterprisecourse.models.UserNotFoundException;
-import com.example.enterprisecourse.models.UserRepository;
+import com.example.enterprisecourse.models.roles.Roles;
+import com.example.enterprisecourse.models.users.UserEntity;
+import com.example.enterprisecourse.models.users.UserNotFoundException;
+import com.example.enterprisecourse.models.users.UserRepository;
 import com.example.enterprisecourse.services.UserService;
 
 import jakarta.validation.Valid;
@@ -74,9 +77,6 @@ public class UserController {
             return "error";
         }
     }
-
-
-
 
 
     

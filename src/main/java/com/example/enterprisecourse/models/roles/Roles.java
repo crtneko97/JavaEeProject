@@ -1,4 +1,4 @@
-package com.example.enterprisecourse.models;
+package com.example.enterprisecourse.models.roles;
 
 
 import org.springframework.security.core.GrantedAuthority;

@@ -79,11 +79,12 @@
 
         <button type="submit">Login</button>
 
+		<a th:href="@{/register}">Don't have an account? Register here.</a>
+
         <!-- Display error message -->
         <div th:if="${param.error}" class="text-danger">
             <p th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
         </div>
-
     </form>
 
 </body>

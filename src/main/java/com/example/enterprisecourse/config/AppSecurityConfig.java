@@ -1,6 +1,6 @@
 package com.example.enterprisecourse.config;
 
-import static com.example.enterprisecourse.models.Roles.*;
+import static com.example.enterprisecourse.models.roles.Roles.*;
 
 import java.util.concurrent.TimeUnit;
 
