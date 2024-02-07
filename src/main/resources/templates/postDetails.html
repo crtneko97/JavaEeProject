@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Post Details</title>
+    
+    <!-- Add any additional CSS or styling here -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: #3498db;
+            padding: 10px;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        h1 {
+            color: #fff;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px; /* Set your desired width */
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h1>Post Details</h1>
+        <!-- Add more navigation items if needed -->
+    </div>
+
+    <div class="container">
+        <dl>
+            <dt>Title:</dt>
+            <dd th:text="${post.title}"></dd>
+
+            <dt>Link:</dt>
+            <dd th:text="${post.link}"></dd>
+
+            <dt>Created By:</dt>
+            <dd th:text="${post.createdBy.username}"></dd>
+
+            <dt>Created At:</dt>
+            <dd th:text="${post.createdAt}"></dd>
+        </dl>
+
+        <div class="body-container">
+            <h2>Body:</h2>
+            <div class="body-box">
+                <p th:text="${post.body}"></p>
+            </div>
+        </div>
+    </div>
+
+    <a th:href="@{/forum}">Back to Forum</a>
+
+</body>
+
+</html>

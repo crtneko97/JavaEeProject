@@ -8,11 +8,13 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -30,6 +32,19 @@ public class PostController {
         model.addAttribute("posts", posts);
         model.addAttribute("postEntity", new PostEntity()); // This is for the create post form
         return "forum";
+    }
+
+    @GetMapping("/post/{postId}")
+    public String showPostDetails(@PathVariable Long postId, Model model) {
+        Optional<PostEntity> postOptional = postRepository.findById(postId);
+        
+        if (postOptional.isPresent()) {
+            model.addAttribute("post", postOptional.get());
+            return "postDetails";
+        } else {
+            // Handle post not found
+            return "redirect:/forum";
+        }
     }
 
     @PostMapping("/createPost")

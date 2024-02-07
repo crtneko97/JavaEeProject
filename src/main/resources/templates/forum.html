@@ -102,6 +102,7 @@
         <table border="1">
             <thead>
                 <tr>
+                	<th>View Details</th>
                     <th>Title</th>
                     <th>Link</th>
                     <th>Created By</th>
@@ -109,11 +110,12 @@
             </thead>
             <tbody>
                 <tr th:each="post : ${posts}">
+				    <td>
+				        <a th:href="@{/post/{postId}(postId=${post.id})}">View Details</a>
+				    </td>
                     <td th:text="${post.title}"></td>
                     <td th:text="${post.link}"></td>
-                    <td>
-                        <span th:text="${post.createdBy.username}"></span>
-                    </td>
+                    <td th:text="${post.createdBy.username}"></td>
                 </tr>
             </tbody>
         </table>
