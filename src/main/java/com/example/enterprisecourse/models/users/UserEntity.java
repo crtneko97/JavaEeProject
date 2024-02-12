@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.enterprisecourse.models.comments.CommentEntity;
 import com.example.enterprisecourse.models.posts.PostEntity;
 import com.example.enterprisecourse.models.roles.Roles;
 
@@ -16,7 +17,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
@@ -45,6 +45,9 @@ public class UserEntity implements UserDetails {
 
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
     private List<PostEntity> posts;
+    
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
+    private List<CommentEntity> comments;
 
     public UserEntity() {}
 

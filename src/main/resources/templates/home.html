@@ -7,23 +7,21 @@
 
     <!-- Add style for centering and styling -->
     <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: lightgray; /* Set the background color of the body */
-        }
+    body {
+        margin: 0;
+        background-color: lightgray;
+    }
+    
+		.container {
+		    display: flex;
+		    flex-direction: column; /* Set flex-direction to column */
+		    justify-content: center;
+		    align-items: center; /* Center items horizontally */
+		    text-align: center;
+		}
 
-        .container {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff; /* Keep a white background inside the container */
-            border-radius: 8px;
-        }
+
+
 
         .navbar {
             display: flex;
@@ -50,7 +48,8 @@
 
 <body>
     <!-- Wrap content in a container div -->
-    <div class="container">
+    <div>
+        <h1>Welcome to the start-page.</h1>
         <div class="navbar">
             <a th:href="@{/}">Home</a>
             <a th:href="@{/}">About</a>
@@ -61,7 +60,7 @@
             <a th:href="@{/myprofile}">My profile</a>
             <!-- Add more navigation links as needed -->
         </div>
-        <h1>Welcome to the start-page.</h1>
+        <div class="container">
         <p>Simon Enterprise project, 2024.</p>
         <img src="../static/projectlol.jpeg" alt="This image could not be loaded">
         <ul>
@@ -91,6 +90,7 @@
 		    The content continues on a new line.<br>
 		    You can use the &lt;br&gt; tag to create breaks within a paragraph.
 		</p>
+		</div>
     </div>
 </body>
 

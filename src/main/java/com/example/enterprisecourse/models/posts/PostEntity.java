@@ -1,15 +1,19 @@
 package com.example.enterprisecourse.models.posts;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.example.enterprisecourse.models.comments.CommentEntity;
 import com.example.enterprisecourse.models.users.UserEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class PostEntity {
@@ -26,6 +30,9 @@ public class PostEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity createdBy;
+    
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<CommentEntity> comments;
 
     // Constructors
     public PostEntity() {

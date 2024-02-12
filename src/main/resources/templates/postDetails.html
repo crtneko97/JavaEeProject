@@ -40,24 +40,47 @@
             color: black;
         }
 
+        .comments-container {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 60%; /* Adjust width as needed */
+            text-align: left;
+            border: 1px solid #ddd; /* Add border to the comments section */
+            color: black;
+            margin-top: 20px;
+        }
+        
+        .comment-form {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 60%; /* Adjust width as needed */
+            text-align: left;
+            border: 1px solid #ddd; /* Add border to the comment form */
+            color: black;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
 
-        <dl class="container">
-            <dt>Title:</dt>
-            <dd th:text="${post.title}"></dd>
+    <dl class="container">
+        <dt>Title:</dt>
+        <dd th:text="${post.title}"></dd>
 
-            <dt>Link:</dt>
-            <dd th:text="${post.link}"></dd>
+        <dt>Link:</dt>
+        <dd th:text="${post.link}"></dd>
 
-            <dt>Created By:</dt>
-            <dd th:text="${post.createdBy.username}"></dd>
+        <dt>Created By:</dt>
+        <dd th:text="${post.createdBy.username}"></dd>
 
-            <dt>Created At:</dt>
-            <dd th:text="${post.createdAt}"></dd>
-        </dl>
+        <dt>Created At:</dt>
+        <dd th:text="${post.createdAt}"></dd>
+    </dl>
 
     <div class="body-container">
         <h2>Body:</h2>
@@ -65,6 +88,29 @@
             <p th:text="${post.body}"></p>
         </div>
     </div>
+		<!-- Comment form section -->
+		<div class="comment-form">
+		    <h2>Add a Comment:</h2>
+		    <form th:action="@{'/comments/create/' + ${post.id}}" th:object="${commentEntity}" method="post">
+		        <textarea th:field="*{content}" placeholder="Type your comment here"></textarea>
+		        <button type="submit">Submit Comment</button>
+		    </form>
+		</div>
+
+	    
+
+		    <!-- Comments section -->
+	<div class="comments-container">
+	    <h2>Comments:</h2>
+    	<ul th:if="${comments != null}">
+        <li th:each="comment : ${comments}">
+            <p th:text="${comment.content}"></p>
+            <small th:text="${comment.createdBy.username}"></small>
+            <!-- Add other comment details as needed -->
+        </li>
+	    </ul>
+	</div>
+
 
     <a th:href="@{/forum}">Back to Forum</a>
 
