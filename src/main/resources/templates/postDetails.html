@@ -9,110 +9,151 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: lightgray;
+            background-color: #f5f5f5; /* Light gray background */
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Start from the left */
+            align-items: center; /* Center the content */
             min-height: 100vh;
             padding-top: 50px;
         }
 
-        .navbar {
+        .container {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
             border-radius: 8px;
             text-align: left;
-            border: 1px solid #ddd; /* Add border to the navbar */
+            border: 2px solid #000; /* Black border */
             color: black;
             margin-bottom: 20px;
+            padding: 20px; /* Add padding to the container */
+            width: 80%; /* Adjust width as needed */
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .navbar dl {
+            margin: 0;
+            display: flex;
+            gap: 10px; /* Adjust the gap between elements */
+        }
+
+        .navbar dt {
+            font-weight: bold;
+            margin-right: 5px; /* Adjust the right margin for spacing */
+        }
+
+        .navbar dd {
+            margin: 0;
         }
 
         .body-box {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
+            background-color: #fff;
             border-radius: 8px;
             padding: 20px;
-            width: 60%; /* Adjust width as needed */
-            text-align: left;
-            border: 1px solid #ddd; /* Add border to the body text */
-            color: black;
+            margin-top: 20px;
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
+            white-space: pre-wrap; /* Allow text to wrap and maintain line breaks */
         }
 
-        .comments-container {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
+        .comments-container ul li {
+            border: 1px solid #ddd; /* Add border to each comment */
             border-radius: 8px;
-            padding: 20px;
-            width: 60%; /* Adjust width as needed */
-            text-align: left;
-            border: 1px solid #ddd; /* Add border to the comments section */
-            color: black;
-            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow background */
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: white;
         }
-        
+
         .comment-form {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
+            background-color: #fff;
             border-radius: 8px;
             padding: 20px;
-            width: 60%; /* Adjust width as needed */
-            text-align: left;
-            border: 1px solid #ddd; /* Add border to the comment form */
-            color: black;
             margin-top: 20px;
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            color: #333;
         }
     </style>
 </head>
 
 <body>
 
-    <dl class="container">
-        <dt>Title:</dt>
-        <dd th:text="${post.title}"></dd>
+    <div class="container">
+        <div class="navbar">
+            <dl>
+                <dt>Title:</dt>
+                <dd th:text="${post.title}"></dd>
 
-        <dt>Link:</dt>
-        <dd th:text="${post.link}"></dd>
+                <dt>Link:</dt>
+                <dd th:text="${post.link}"></dd>
 
-        <dt>Created By:</dt>
-        <dd th:text="${post.createdBy.username}"></dd>
+                <dt>Created By:</dt>
+                <dd th:text="${post.createdBy.username}"></dd>
 
-        <dt>Created At:</dt>
-        <dd th:text="${post.createdAt}"></dd>
-    </dl>
+                <dt>Created At:</dt>
+                <dd th:text="${post.createdAt}"></dd>
+            </dl>
+        </div>
 
-    <div class="body-container">
         <h2>Body:</h2>
         <div class="body-box">
             <p th:text="${post.body}"></p>
         </div>
+
+        <!-- Comment form section -->
+        <div class="comment-form">
+            <h2>Add a Comment:</h2>
+            <form th:action="@{'/comments/create/' + ${post.id}}" th:object="${commentEntity}" method="post">
+                <textarea th:field="*{content}" placeholder="Type your comment here"></textarea>
+                <button type="submit">Submit Comment</button>
+            </form>
+        </div>
+
+        <!-- Comments section -->
+        <div class="comments-container">
+            <h2>Comments:</h2>
+            <ul th:if="${comments != null}">
+                <li th:each="comment : ${comments}">
+                    <p th:text="${comment.content}"></p>
+                    <small th:text="${comment.createdBy.username}"></small>
+                    <!-- Add other comment details as needed -->
+                </li>
+            </ul>
+        </div>
+
+        <a th:href="@{/forum}">Back to Forum</a>
     </div>
-		<!-- Comment form section -->
-		<div class="comment-form">
-		    <h2>Add a Comment:</h2>
-		    <form th:action="@{'/comments/create/' + ${post.id}}" th:object="${commentEntity}" method="post">
-		        <textarea th:field="*{content}" placeholder="Type your comment here"></textarea>
-		        <button type="submit">Submit Comment</button>
-		    </form>
-		</div>
-
-	    
-
-		    <!-- Comments section -->
-	<div class="comments-container">
-	    <h2>Comments:</h2>
-    	<ul th:if="${comments != null}">
-        <li th:each="comment : ${comments}">
-            <p th:text="${comment.content}"></p>
-            <small th:text="${comment.createdBy.username}"></small>
-            <!-- Add other comment details as needed -->
-        </li>
-	    </ul>
-	</div>
-
-
-    <a th:href="@{/forum}">Back to Forum</a>
 
 </body>
 

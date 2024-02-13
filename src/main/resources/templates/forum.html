@@ -5,132 +5,172 @@
     <meta charset="UTF-8">
     <title>Forum Page</title>
     <!-- Add any additional CSS or styling here -->
-<style>
-    body {
-        margin: 0;
-        background-color: lightgray;
-    }
+    <style>
+        body {
+            margin: 0;
+            background-color: #f5f5f5; /* Light gray background */
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
 
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto; /* Center the container */
+        }
 
-    .navbar {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 10px;
-    }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
 
-    .navbar a {
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        border: 1px solid #ccc;
-        padding: 8px;
-        border-radius: 4px;
-    }
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 4px;
+        }
 
-    table {
-        border-collapse: collapse;
-        width: 50%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 0;
-    }
+        .navbar a:hover {
+            background-color: #ddd;
+        }
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+        .content {
+            flex: 1;
+            margin-right: 20px;
+        }
 
-    th {
-        background-color: #f2f2f2;
-    }
+        .forum-posts {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            text-align: left;
+        }
 
-    form {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        border-radius: 8px;
-        width: 50%;
-        margin: 20px 0;
-        padding: 20px;
-        text-align: left;
-    }
+        .create-post {
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: left;
+        }
 
-    label {
-        display: block;
-        margin-bottom: 8px;
-    }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
 
-    input {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 16px;
-    }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px; /* Increased padding for better readability */
+            text-align: left;
+        }
 
-    button {
-        padding: 10px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-</style>
+        th {
+            background-color: #f2f2f2;
+        }
 
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
 
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
+        }
 
+        button {
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <div class="content">
+            <h1>Welcome to the Forum</h1>
+            <div class="navbar">
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/}">About</a>
+                <a th:href="@{/forum}">Forum</a>
+                <a th:href="@{/register}">Register</a>
+                <a th:href="@{/login}">Login</a>
+                <a th:href="@{/logout}">Logout</a>
+            </div>
 
-    <div>
-        <h1>Welcome to the Forum</h1>
-
-        <div class="navbar">
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/}">About</a>
-            <a th:href="@{/forum}">Forum</a>
-            <a th:href="@{/register}">Register</a>
-            <a th:href="@{/login}">Login</a>
-            <a th:href="@{/logout}">Logout</a>
-            
+            <h2>Forum Posts</h2>
+            <div class="forum-posts">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>View Details</th>
+                            <th>Title</th>
+                            <th>Link</th>
+                            <th>Created By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post : ${posts}">
+                            <td>
+                                <a th:href="@{/post/{postId}(postId=${post.id})}">View Details</a>
+                            </td>
+                            <td th:text="${post.title}"></td>
+                            <td th:text="${post.link}"></td>
+                            <td th:text="${post.createdBy.username}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <h2>Forum Posts</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                	<th>View Details</th>
-                    <th>Title</th>
-                    <th>Link</th>
-                    <th>Created By</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="post : ${posts}">
-				    <td>
-				        <a th:href="@{/post/{postId}(postId=${post.id})}">View Details</a>
-				    </td>
-                    <td th:text="${post.title}"></td>
-                    <td th:text="${post.link}"></td>
-                    <td th:text="${post.createdBy.username}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="content">
+            <div class="create-post">
+                <h2>Create a New Post</h2>
+                <form th:action="@{/createPost}" th:method="post" th:object="${postEntity}">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" th:field="*{title}" required>
 
-        <h2>Create a New Post</h2>
-        <form th:action="@{/createPost}" th:method="post" th:object="${postEntity}">
-            <label for="title">Title:</label>
-            <input type="text" id="title" th:field="*{title}" required>
+                    <label for="link">Link:</label>
+                    <input type="text" id="link" th:field="*{link}" required>
 
-            <label for="link">Link:</label>
-            <input type="text" id="link" th:field="*{link}" required>
+                    <label for="body">Body:</label>
+                    <textarea id="body" th:field="*{body}" rows="8" required></textarea>
 
-			<label for="body">Body:</label>
-		    <textarea id="body" th:field="*{body}" rows="8" required></textarea>
-
-            <button type="submit">Create Post</button>
-        </form>
+                    <button type="submit">Create Post</button>
+                </form>
+            </div>
+        </div>
     </div>
-
 </body>
 
 </html>
