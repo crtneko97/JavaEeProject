@@ -18,7 +18,7 @@ import jakarta.persistence.Id;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired private  UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {

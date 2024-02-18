@@ -22,7 +22,7 @@ public class PostEntity {
     private Long id;
 
     private String title;
-    private String link;
+    private String language;
     private String body; // New attribute for the post body
     private LocalDateTime createdAt;
 
@@ -39,9 +39,9 @@ public class PostEntity {
         // Empty constructor
     }
 
-    public PostEntity(String title, String link, String body, LocalDateTime createdAt, UserEntity createdBy) {
+    public PostEntity(String title, String language, String body, LocalDateTime createdAt, UserEntity createdBy) {
         this.title = title;
-        this.link = link;
+        this.language = language;
         this.body = body;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
@@ -64,12 +64,12 @@ public class PostEntity {
         this.title = title;
     }
 
-    public String getLink() {
-        return link;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public String getBody() {

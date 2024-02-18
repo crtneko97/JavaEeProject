@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import com.example.enterprisecourse.models.posts.PostEntity;
 import com.example.enterprisecourse.models.posts.PostRepository;
 import com.example.enterprisecourse.models.comments.CommentRepository;  // Import CommentRepository
 import com.example.enterprisecourse.models.users.UserEntity;
+import com.example.enterprisecourse.services.PostService;
 
 @Controller
 public class PostController {
@@ -23,6 +25,9 @@ public class PostController {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;  // Add CommentRepository
 
+    @Autowired PostService postService;
+    
+    
     public PostController(PostRepository postRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;  // Initialize CommentRepository
@@ -65,5 +70,12 @@ public class PostController {
         postEntity.setCreatedAt(LocalDateTime.now());
         postRepository.save(postEntity);
         return "redirect:/forum";
+    }
+    
+    @GetMapping("deletePost/{id}")
+    public String deletePost(@PathVariable(value = "id") long id) {
+    	this.postService.deletePost(id);
+    	
+    	return "redirect:/adminpage";
     }
 }

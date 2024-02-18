@@ -27,9 +27,7 @@
 
 <body>
 
-    <h1>Secret Admin Page</h1>
-    <p>You have discovered the secrets...</p>
-
+	<h2>Users</h2>
     <div th:action="@{/adminpage}" th:method="get" th:object="${userEntity}">
 
         <table border="1" class="table table-striped table-responsive-md">
@@ -56,6 +54,33 @@
             </tbody>
         </table>
     </div>
+    <h2>Forums</h2>
+                <div class="forum-posts">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>View Details</th>
+                            <th>Title</th>
+                            <th>Language</th>
+                            <th>Created By</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post : ${posts}">
+                            <td>
+                                <a th:href="@{/post/{postId}(postId=${post.id})}">View Details</a>
+                            </td>
+                            <td th:text="${post.title}"></td>
+                            <td th:text="${post.language}"></td>
+                            <td th:text="${post.createdBy.username}"></td>
+					<td>
+                        <a th:href="@{/deletePost/{id}(id=${post.id})}">Delete</a>
+                    </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
 </body>
 

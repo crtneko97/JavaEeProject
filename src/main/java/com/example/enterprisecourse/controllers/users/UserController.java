@@ -1,5 +1,7 @@
 package com.example.enterprisecourse.controllers.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.enterprisecourse.config.AppPasswordConfig;
+import com.example.enterprisecourse.models.posts.PostEntity;
+import com.example.enterprisecourse.models.posts.PostRepository;
 import com.example.enterprisecourse.models.roles.Roles;
 import com.example.enterprisecourse.models.users.UserEntity;
 import com.example.enterprisecourse.models.users.UserNotFoundException;
@@ -28,6 +32,7 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final AppPasswordConfig appPasswordConfig; // Bcrypt
+    private final PostRepository postRepository;
     
     @Autowired
     private UserService userService;
@@ -35,9 +40,10 @@ public class UserController {
     
 
     @Autowired
-    public UserController(UserRepository userRepository, AppPasswordConfig appPasswordConfig) {
+    public UserController(UserRepository userRepository, AppPasswordConfig appPasswordConfig, PostRepository postRepository) {
         this.userRepository = userRepository;
         this.appPasswordConfig = appPasswordConfig;
+        this.postRepository = postRepository;
     }
     
     
@@ -92,6 +98,10 @@ public class UserController {
     @GetMapping("/adminpage")
     public String viewAdminPage(UserEntity userEntity, Model model) {
         model.addAttribute("listUsers", userService.getAllUsers());
+        List<PostEntity> posts = postRepository.findAll();
+        model.addAttribute("posts", posts);
+        model.addAttribute("postEntity", new PostEntity());
+        
         return "adminpage"; // Ensure that this matches the Thymeleaf template name
     }
 
