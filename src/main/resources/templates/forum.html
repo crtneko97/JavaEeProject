@@ -135,7 +135,7 @@
                         <tr>
                             <th>View Details</th>
                             <th>Title</th>
-                            <th>Link</th>
+                            <th>Language</th>
                             <th>Created By</th>
                         </tr>
                     </thead>
@@ -145,7 +145,7 @@
                                 <a th:href="@{/post/{postId}(postId=${post.id})}">View Details</a>
                             </td>
                             <td th:text="${post.title}"></td>
-                            <td th:text="${post.link}"></td>
+                            <td th:text="${post.language}"></td>
                             <td th:text="${post.createdBy.username}"></td>
                         </tr>
                     </tbody>
@@ -161,7 +161,7 @@
                     <input type="text" id="title" th:field="*{title}" required>
 
                     <label for="language">Language:</label>
-                    <input type="text" id="language" th:field="language" required>
+                    <input type="text" id="language" th:field="*{language}" required>
 
                     <label for="body">Body:</label>
                     <textarea id="body" th:field="*{body}" rows="8" required></textarea>
