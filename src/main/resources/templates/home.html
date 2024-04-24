@@ -6,230 +6,107 @@
     <title>Homepage</title>
 
     <!-- Add style for centering and styling -->
- <style>
-body {
-    margin: 0;
-    background-color: #FFFAFA;
-    height: 100vh; /* Set the body height to 100% of the viewport */
-    display: flex; /* Use flexbox for body */
-    flex-direction: column; /* Stack children in a column */
-    font-family: 'Arial', sans-serif; /* Set the default font family */
-    color: #333; /* Set the default text color */
-}
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to bottom right, #86A8E7, #91EAE4);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.navbar {
-    display: flex;
-    align-items: center; /* Center the content vertically */
-    margin-bottom: 10px;
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-}
+        .container {
+            width: 80%;
+            max-width: 1400px;
+            height: 100%;
+            margin: 2rem auto;
+            border: 2px solid blue;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-.navbar a {
-    text-decoration: none;
-    color: #007bff; /* Set the anchor text color */
-    font-weight: bold;
-    margin-right: 20px; /* Increase the right margin for more space */
-}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 10px; /* Small margin from the container's top */
+        }
 
-.navbar img {
-    max-height: 50px;
-    margin-right: 10px; /* Add right margin to the image */
-    margin-top: 10px; /* Add top margin to the image */
-}
+        .navbar a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
-.row {
-    display: flex;
-    flex: 1; /* Expand and take up the full height */
-}
+        .navbar a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-.column {
-    flex: 70%;
-    border: 1px solid #ddd;
-    min-height: 100%; /* Set minimum height to 100% */
-}
+        .navbar img {
+            max-height: 2rem;
+            margin-right: 1rem;
+            margin-top: 1rem;
+        }
 
-.columntwo {
-    border: 1px solid #ddd;
-    flex: 30%;
-    min-height: 100%; /* Set minimum height to 100% */
-}
+        .row {
+            display: flex;
+            justify-content: center;
+            border: 1px solid blue;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
 
-.column h1, .column h2, .column p, .columntwo h2, .columntwo p, .columntwo table {
-    margin: 10px 0; /* Add margin to headings, paragraphs, and tables */
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 2px solid #000; /* Add black border to the table */
-}
-
-th, td {
-    border: 1px solid #000; /* Add black border to the cells */
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-
-</style>
+        .row div {
+            padding: 1rem;
+        }
+        image {
+        	width:30%;
+        }
+    </style>
 
 </head>
 
 <body>
     <!-- Wrap content in a container div -->
+    <div class="container">
         <div class="navbar">
-        
-            <img src="../static/logo.jpg" alt="Logo">
-        
-            <div>
-                <a th:href="@{/}">Home</a>
-                <a th:href="@{/}">About</a>
-                <a th:href="@{/forum}">Forum</a>
-                <a th:href="@{/register}">Register</a>
-                <a th:href="@{/login}">Login</a>
-                <a th:href="@{/logout}">Log out</a>
-                <a th:href="@{/myprofile}">My profile</a>
-                <a th:href="@{/adminpage}">Adminpage</a>
-				<a th:href="@{/api/helloAdmin}">apitest</a>
-                <a th:href="@{/api/sayGet}">apitesttwo</a>
-            </div>
-        
+            <!-- <img src="../static/logo.jpg" alt="Logo">  -->
+            <a th:href="@{/}">☁️ Home</a>
+            <a th:href="@{/}">☁️ About</a>
+            <a th:href="@{/forum}">☁️ Forum</a>
+            <a th:href="@{/register}">☁️ Register</a>
+            <a th:href="@{/login}">☁️ Login</a>
+            <a th:href="@{/logout}">☁️ Log out</a>
+            <a th:href="@{/myprofile}">☁️ My profile</a>
+            <a th:href="@{/adminpage}">☁️ Adminpage</a>
         </div>
-         <div class="row">
-		  <div class="column">
-            <h1>Java Enterprise By Simon Kern.</h1>
-			<p>
-			    Welcome to my Java Enterprise journey! In this course, I am exploring the intricacies of enterprise-level Java development. <br>
-			    From building scalable applications to mastering advanced Java EE concepts, this journey is an exciting exploration of the world of Java in the enterprise. <br>
-			    Join me as I dive into the complexities of backend development, microservices architecture, and more. Let's embark on this learning adventure together!
-			</p>
-			<h1>Java 8 Features</h1>
-			<h2>Lambda Expressions</h2>
-			<p>
-			Lambda expression helps us to write our code in functional style. It provides a clear and concise way to implement SAM interface(Single Abstract Method) by using an expression. It is very useful in collection library in which it helps to iterate, filter and extract data.
-
-			</p>
-			<a href="https://www.javatpoint.com/java-8-method-reference">For more information and examples:</a>
-		  <h2>Optional</h2>
-		  <p>Java introduced a new class Optional in Java 8. It is a public final class which is used to deal with NullPointerException in Java application. We must import java.util package to use this class. It provides methods to check the presence of value for particular variable.</p>
-		  <a href="https://www.javatpoint.com/java-8-optional">For more information and examples:</a>
-		  <h2>Stream Filter</h2>
-		  <p>Java stream provides a method filter() to filter stream elements on the basis of given predicate. Suppose, you want to get only even elements of your list, you can do this easily with the help of filter() method.
-
-This method takes predicate as an argument and returns a stream of resulted elements.</p>
-		  		  <a href="https://www.javatpoint.com/java-8-optional">For more information and examples:</a>
-		  <h2>Java Base64 Encoding and Decoding</h2>
-		  <p>Java provides a class Base64 to deal with encryption and decryption. You need to import java.util.Base64 class in your source file to use its methods.
-
-This class provides three different encoders and decoders to encrypt information at each level.</p>
-		  		  <a href="https://www.javatpoint.com/java-8-optional">For more information and examples:</a>
-		  <h2>Java Parallel Array Sorting</h2>
-		  <p>Java provides a new additional feature in Arrays class which is used to sort array elements parallelly. The parallelSort() method has added to java.util.Arrays class that uses the JSR 166 Fork/Join parallelism common pool to provide sorting of arrays. It is an overloaded method.</p>
-		  		  		  <a href="https://www.javatpoint.com/java-8-optional">For more information and examples:</a>
-		  <h2>Java 8 I/O Enhancements</h2>
-		  <p>In Java 8, there are several improvements to the java.nio.charset.Charset and extended charset implementations. It includes the following:
-
-    A New SelectorProvider which may improve performance or scalability for server. The /dev/poll SelectorProvider continues to be the default. To use the Solaris event port mechanism, run with the system property java.nio.channels.spi.Selector set to the value sun.nio.ch.EventPortSelectorProvider.
-    The size of <JDK_HOME>/jre/lib/charsets.jar file is decreased.
-    Performance has been improvement for the java.lang.String(byte[], ∗) constructor and the java.lang.String.getBytes() method.
-		  </p>
-		  		  		  <a href="https://www.javatpoint.com/java-8-optional">For more information and examples:</a>
-
-		<h1>Java 17</h1>
-		  </div>
-		  <div class="columntwo">
-    <h2>Course Schedule</h2>
-    <table>
-        <tr>
-            <th>Lecture #</th>
-            <th>Topic</th>
-            <th>Inspelning</th>
-            <th>Repository</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Intro</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Java8+ Features</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>MVC & MVVM</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Thymeleaf & PostgreSQL</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Spring Security - Intro</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Permissions</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Encoding & Hashing</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>UserDetails & Service - UPDATED</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>Validering & Felhantering Thymeleaf #2</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Login, Logout & Cookies</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>DAO & DTO</td>
-            <td><a href="#">CLICK ME</a></td>
-            <td><a href="#">CLICK ME</a></td>
-        </tr>
-    </table>
-		  </div>
-		</div> 
-		<div class="">
-		
-            <!-- Ändra titeln -->
-			
-
-
-    	</div>
+        <div class="row">
+            <div>
+            	<h1>First version of the game 0.0.1</h1>
+            	<span>DATE: 2024-04-24</span>
+                <p>All the above text should be from a database where the updates are</p>
+                <p>I will work on that later, as for the game we will print some photos down here.</p>
+                <br>
+                <p>I will have to add the styling to that but for now i will just a java logo <3</p>
+                <img src="../static/logo.jpg" alt="Logo">
+                <span>Author: Simon Kern</span>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
