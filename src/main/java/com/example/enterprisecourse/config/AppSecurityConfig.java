@@ -46,7 +46,7 @@ public class AppSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/hash", "/register", "/api/user").permitAll()
                         .requestMatchers("/adminpage").hasRole(ADMIN.name())
-                        .requestMatchers("/createPost").hasAuthority("GET") // Require authentication for creating posts
+                        .requestMatchers("/createPost").hasAuthority("GET")
                         .anyRequest().permitAll()
                 )
 

@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.enterprisecourse.models.comments.CommentEntity;
+import com.example.enterprisecourse.models.patchnotes.PatchNotesEntity;
 import com.example.enterprisecourse.models.posts.PostEntity;
 import com.example.enterprisecourse.models.roles.Roles;
 
@@ -49,6 +50,9 @@ public class UserEntity implements UserDetails {
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
     private List<CommentEntity> comments;
 
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
+    private List<PatchNotesEntity> patchNotes;
+    
     public UserEntity() {}
 
     public UserEntity(String username, String password, Roles roles,

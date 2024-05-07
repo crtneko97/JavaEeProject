@@ -29,6 +29,20 @@
 
 <body>
 
+
+	<h2>Create patchNote</h2>
+		<form th:action="@{/createPatchNote}" th:method="post" th:object="${patchNotesEntity}">
+          	<div class="input-section">
+            <label for="body">body:</label>
+            <input type="text" id="body" th:field="*{body}" required>
+            
+            <label for="version">version:</label>
+            <input type="text" id="version" th:field="*{version}" required>
+            <label for="patchType">patchType:</label>
+            <input type="text" id="language" th:field="*{patchType}" required>
+            <button type="submit">Create Post</button>
+             </div>
+  		</form>
 	<h2>Users</h2>
     <div th:action="@{/adminpage}" th:method="get" th:object="${userEntity}">
 

@@ -51,6 +51,36 @@ body {
     margin-right: 1rem;
     margin-top: 1rem;
 }
+.patch {
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.patch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.patch-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.patch-type {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.patch-body {
+    line-height: 1.5;
+}
 
 .row {
     display: flex;

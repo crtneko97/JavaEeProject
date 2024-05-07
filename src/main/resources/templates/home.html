@@ -21,18 +21,19 @@
             <a th:href="@{/myprofile}">☁️ My profile</a>
             <a th:href="@{/adminpage}">☁️ Adminpage</a>
         </div>
-        <div class="row">
-            <div>
-            	<h1>First version of the game 0.0.1</h1>
-            	<span>DATE: 2024-04-24</span>
-                <p>All the above text should be from a database where the updates are</p>
-                <p>I will work on that later, as for the game we will print some photos down here.</p>
-                <br>
-                <p>I will have to add the styling to that but for now i will just a java logo <3</p>
-                <img src="../static/logo.jpg" alt="Logo">
-                <span>Author: Simon Kern</span>
-            </div>
-        </div>
+<div th:each="patch : ${patches}" class="patch">
+    <div class="patch-header">
+        <h2 th:text="${patch.version}"></h2>
+        <p th:text="${patch.patchType}" class="patch-type"></p>
+    </div>
+    <div class="patch-body">
+        <p th:text="${patch.body}"></p>
+    </div>
+        <p>Created at: <span th:text="${patch.createdAt}"></span></p>
+</div>
+
+
+
     </div>
 </body>
 

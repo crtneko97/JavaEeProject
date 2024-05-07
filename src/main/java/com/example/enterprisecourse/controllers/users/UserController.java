@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.enterprisecourse.config.AppPasswordConfig;
+import com.example.enterprisecourse.models.patchnotes.PatchNotesEntity;
+import com.example.enterprisecourse.models.patchnotes.PatchNotesRepository;
 import com.example.enterprisecourse.models.posts.PostEntity;
 import com.example.enterprisecourse.models.posts.PostRepository;
 import com.example.enterprisecourse.models.roles.Roles;
@@ -33,6 +35,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final AppPasswordConfig appPasswordConfig; // Bcrypt
     private final PostRepository postRepository;
+    private final PatchNotesRepository patchNotesRepository;
     
     @Autowired
     private UserService userService;
@@ -40,10 +43,11 @@ public class UserController {
     
 
     @Autowired
-    public UserController(UserRepository userRepository, AppPasswordConfig appPasswordConfig, PostRepository postRepository) {
+    public UserController(UserRepository userRepository, AppPasswordConfig appPasswordConfig, PostRepository postRepository, PatchNotesRepository patchNotesRepository) {
         this.userRepository = userRepository;
         this.appPasswordConfig = appPasswordConfig;
         this.postRepository = postRepository;
+        this.patchNotesRepository = patchNotesRepository;
     }
     
     
@@ -100,10 +104,12 @@ public class UserController {
         model.addAttribute("listUsers", userService.getAllUsers());
         List<PostEntity> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
-        model.addAttribute("postEntity", new PostEntity());
+        model.addAttribute("postEntity", new PostEntity());  // Ensure this is still needed
+        model.addAttribute("patchNotesEntity", new PatchNotesEntity()); // Add this line for the patch notes form
         
         return "adminpage"; // Ensure that this matches the Thymeleaf template name
     }
+
 
 
     
