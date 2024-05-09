@@ -9,7 +9,6 @@
 
 <body>
     <!-- Wrap content in a container div -->
-    <div class="container">
         <div class="navbar">
             <!-- <img src="../static/logo.jpg" alt="Logo">  -->
             <a th:href="@{/}">☁️ Home</a>
@@ -21,20 +20,22 @@
             <a th:href="@{/myprofile}">☁️ My profile</a>
             <a th:href="@{/adminpage}">☁️ Adminpage</a>
         </div>
+    <div class="container">
+        <h1 class="header-text">slice-of-work-life</h1>
 <div th:each="patch : ${patches}" class="patch">
     <div class="patch-header">
-        <h2 th:text="${patch.version}"></h2>
-        <p th:text="${patch.patchType}" class="patch-type"></p>
+        <h2 th:text="${patch.version}">0.0.1</h2>
+        <p th:text="${patch.patchType}" class="patch-type">CODE</p>
     </div>
     <div class="patch-body">
-        <p th:text="${patch.body}"></p>
+        <p th:text="${patch.body}">orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
     </div>
-        <p>Created at: <span th:text="${patch.createdAt}"></span></p>
+        <p>Created at: <span th:text="${patch.createdAt}" class="patch-createdAt"></span></p>
 </div>
 
 
 
-    </div>
+</div>
 </body>
 
 </html>

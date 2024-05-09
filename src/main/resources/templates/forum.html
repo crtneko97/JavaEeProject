@@ -6,198 +6,56 @@
     <title>Forum Page</title>
     <!-- Add any additional CSS or styling here -->
 	<link rel="stylesheet" type="text/css" href="../static/styles.css">
-    
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(to bottom right, #86A8E7, #91EAE4);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 10px; /* Small margin from the container's top */
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .navbar a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-    
-        .container {
-            width: 80%;
-            max-width: 1400px;
-            height: 100%;
-            margin: 2rem auto;
-            border: 2px solid blue;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    
-        h1,
-        h2 {
-            color: #333;
-        }
-    
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            border-radius: 1px;
-            overflow: hidden;
-        }
-    
-        th,
-        td {
-            border: 1px solid black;
-            background-color: white;
-            padding: 1rem;
-            text-align: left;
-        }
-    
-        th {
-            background-color: #f2f2f2;
-        }
-    
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-    
-        input,
-        textarea {
-            width: calc(100% - 26px); /* Adjusted width */
-            padding: 10px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    
-        button {
-            padding: 12px;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    
-        button:hover {
-            background-color: #45a049;
-        }
-        
-        .viewD {
-            padding: 0.5rem;
-            color: blue;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    
-        .viewD:hover {
-            color: grey;
-        }
-    
-        /* New styles for create-post section */
-        .create-post {
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .create-post .input-section {
-            width: 48%;
-        }
-        
-        .create-post .text-area {
-            width: 48%;
-            margin-left: 4%; /* Added margin to separate from input-section */
-        }
-        
-        .create-post h2 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-    </style>
 </head>
 
 <body>
     
+    <div class="navbar">
+        <!-- <img src="../static/logo.jpg" alt="Logo">  -->
+        <a th:href="@{/}">☁️ Home</a>
+        <a th:href="@{/}">☁️ About</a>
+        <a th:href="@{/forum}">☁️ Forum</a>
+        <a th:href="@{/register}">☁️ Register</a>
+        <a th:href="@{/login}">☁️ Login</a>
+        <a th:href="@{/logout}">☁️ Log out</a>
+        <a th:href="@{/myprofile}">☁️ My profile</a>
+        <a th:href="@{/adminpage}">☁️ Adminpage</a>
+    </div>
     <div class="container">
-        <div class="navbar">
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/}">About</a>
-            <a th:href="@{/forum}">Forum</a>
-            <a th:href="@{/register}">Register</a>
-            <a th:href="@{/login}">Login</a>
-            <a th:href="@{/logout}">Logout</a>
-        </div>
         <h1>Welcome to the Forum</h1>
         <h2>Forum Posts</h2>
 		<div>
             <form th:action="@{/createPost}" th:method="post" th:object="${postEntity}" class="create-post">
                 <div class="input-section">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" th:field="*{title}" required>
+                    <input type="text" placeholder="Title" th:field="*{title}" required class="input-section">
                     
-                    <label for="language">Language:</label>
-                    <input type="text" id="language" th:field="*{language}" required>
-                    <button type="submit">Create Post</button>
+                    <input type="text" id="language" placeholder="Language" th:field="*{language}" required class="input-section">
                 </div>
-                
                 <div class="text-area">
-                    <label for="body">Body:</label>
-                    <textarea id="body" th:field="*{body}" rows="8" required></textarea>
+                    <textarea id="body" th:field="*{body}" rows="8" required class="text-area"></textarea>
                 </div>
+                <button type="submit" class="submitBtn">Create Post</button>
+                
             </form>
         </div>
         <div class="forum-posts">
             <table border="1">
                 <thead>
                     <tr>
-                        <th style="width: 20%;">View Details</th>
-                        <th style="width: 40%;">Title</th>
-                        <th style="width: 20%;">Language</th>
+                        <th style="width: 10%;">View Details</th>
+                        <th style="width: 20%;">Title</th>
+                        <th style="width: 40%;">Language</th>
                         <th style="width: 20%;">Created By</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="post : ${posts}">
                         <td>
-                            <a th:href="@{/post/{postId}(postId=${post.id})}" class="viewD">View Details</a>
+                            <a th:href="@{/post/{postId}(postId=${post.id})}" class="submitBtn">View Details</a>
                         </td>
-                        <td th:text="${post.title}"></td>
-                        <td th:text="${post.language}"></td>
-                        <td th:text="${post.createdBy.username}"></td>
+                        <td th:text="${post.title}">test</td>
+                        <td th:text="${post.language}">test</td>
+                        <td th:text="${post.createdBy.username}">test</td>
                     </tr>
                 </tbody>
             </table>
