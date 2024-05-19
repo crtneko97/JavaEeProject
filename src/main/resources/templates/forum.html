@@ -42,7 +42,7 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th style="width: 10%;">View Details</th>
+                        <th style="width: 10%;">View</th>
                         <th style="width: 20%;">Title</th>
                         <th style="width: 40%;">Language</th>
                         <th style="width: 20%;">Created By</th>
@@ -51,7 +51,7 @@
                 <tbody>
                     <tr th:each="post : ${posts}">
                         <td>
-                            <a th:href="@{/post/{postId}(postId=${post.id})}" class="submitBtn">View Details</a>
+                            <a th:href="@{/post/{postId}(postId=${post.id})}" class="submitBtn">View</a>
                         </td>
                         <td th:text="${post.title}">test</td>
                         <td th:text="${post.language}">test</td>

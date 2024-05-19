@@ -4,24 +4,16 @@ body {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
     color: white;
-    /* Set background image using a relative path */
     background-image: url('../static/bgtest2.jpg');
-    /* Ensure the image covers the entire background */
-    background-size: 150%; /* Stretch the image by 150% */
-    /* Center the background image */
+    background-size: 150%;
     background-position: center;
-    /* Fix the background image to the viewport */
     background-attachment: fixed;
 }
 
-
-
-
-/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Center items vertically */
+    align-items: center;
     margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 10px;
@@ -45,55 +37,47 @@ body {
     color: aquamarine;
 }
 
-/* Responsive Styles */
 @media screen and (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* Stack items vertically */
-        align-items: flex-start; /* Align items to the left */
+        flex-direction: column;
+        align-items: flex-start;
     }
     
     .navbar a {
-        display: block; /* Display links as block elements */
-        margin-bottom: 0.5rem; /* Add some spacing between links */
+        display: block;
+        margin-bottom: 0.5rem;
     }
 }
 
-/*  CONTAINER */
 .container {
     width: 90%;
-    max-width: 1800px;
-    height: 100%;
+    max-width: 1200px;
     margin: 2rem auto;
     border: 2px solid blue;
     padding: 2rem;
-    /* Set background color with RGBA for dimming effect */
-    background-color: rgba(0, 0, 50, 0.5); /* Dark blue color with 50% opacity */
+    background-color: rgba(0, 0, 50, 0.5);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-/* Header text styles */
+
 .header-text {
     font-size: 3rem;
     font-weight: bold;
     color: white;
     margin-bottom: 2rem;
     text-transform: uppercase;
-    /* Apply gradient background */
     background: linear-gradient(to right, #007bff, #ffffff, #007bff);
-    /* Clip the background to the text */
     -webkit-background-clip: text;
     background-clip: text;
 }
-
 
 .patch {
     border: 2px solid #007bff;
     border-radius: 10px;
     margin-bottom: 20px;
     padding: 20px;
-    /* Center the patch horizontally */
     margin: 0 auto;
-    max-width: 1400px; /* Limit the maximum width of the patch */
+    max-width: 1400px;
 }
 
 .patch-header {
@@ -107,7 +91,6 @@ body {
     margin: 0;
     font-size: 1.5rem;
     color: #007bff;
-    position: relative; /* Position the version number */
 }
 
 .patch-type {
@@ -119,28 +102,27 @@ body {
 
 .patch-body {
     line-height: 1.5;
-    background-color: rgba(0, 0, 26, 0.5); /* Dark blue color with 50% opacity */
-    padding: 20px; /* Add padding to the patch body */
-    border-radius: 10px; /* Add border-radius to match the patch border */
-    margin-top: 10px; /* Add some space between header and body */
-}
-.patch-createdAt p{
-    font-size: 0.875rem;
-}
-.patch-body p {
-    font-size: 1rem;
-    margin: 0; /* Remove default margin */
+    background-color: rgba(0, 0, 26, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
-/* Position the "Created at" text at the bottom right corner */
+.patch-createdAt p {
+    font-size: 0.875rem;
+}
+
+.patch-body p {
+    font-size: 1rem;
+    margin: 0;
+}
+
 .patch-body p span {
     position: absolute;
     bottom: 5px;
     right: 5px;
 }
 
-
-/*FORUM*/
 table {
     width: 100%;
     border-collapse: collapse;
@@ -148,25 +130,21 @@ table {
     border-radius: 1px;
     overflow: hidden;
 }
-th{
+
+th {
     padding: 1rem;
     text-align: left;
     color: #007bff;
 }
+
 td {
     padding: 1rem;
     text-align: left;
-    border: 1px solid #007bff; /* Add border to the right side of each td */
+    border: 1px solid #007bff;
 }
 
-/* Remove border from the last td in each row */
 td:last-child {
     border-right: none;
-}
-
-
-th {
-    color: #007bff;
 }
 
 label {
@@ -183,12 +161,8 @@ label {
     border-radius: 5px;
     margin-bottom: 1rem;
     font-size: 1rem;
-    /* Set transparent background using RGBA color */
-    background-color: rgba(0, 0, 50, 0.5); /* Dark blue color with 50% opacity */
-    /* Adjust the last value (0.3) for transparency */
+    background-color: rgba(0, 0, 50, 0.5);
 }
-
-
 
 .viewD,
 .submitBtn {
@@ -201,7 +175,8 @@ label {
     transition: all 0.3s ease;
     margin-top: 1rem;
 }
-.viewD,
+
+.viewD:hover,
 .submitBtn:hover {
     transform: translateY(-2px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -209,9 +184,6 @@ label {
     color: aquamarine;
 }
 
-
-
-/* New styles for create-post section */
 .create-post {
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -225,7 +197,7 @@ label {
 }
 
 .create-post .text-area {
-    background-color: rgba(0, 0, 50, 0.5); /* Dark blue color with 50% opacity */
+    background-color: rgba(0, 0, 50, 0.5);
     color: white;
     font-size: 1rem;
     width: 80%;
@@ -237,4 +209,15 @@ label {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
+}
+
+.comment-textarea {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    color: white;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 50, 0.5);
+    resize: none;
 }
